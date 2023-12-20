@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "house-prices"
+version = "0.1.0"
+description = "Predicting the price of a house based on its characteristics"
+authors = ["nevolinaa <https://github.com/nevolinaa>"]
+readme = "README.md"
+repository = "https://github.com/nevolinaa/cats_and_dogs"
+keywords = ["python", "linear_regression", "house_prices"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.4"
+joblib = "^1.3.2"
+scikit-learn = "^1.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
