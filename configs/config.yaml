@@ -1,0 +1,11 @@
+data:
+  path: "housing_price_dataset.csv"
+model:
+  test_size: 0.3
+  random_state: 42
+  encode_columns: 'Neighborhood'
+  target_column: 'Price'
+  save_path: 'model.joblib'
+save_names:
+  y: 'target.csv'
+  x: 'X_test.csv'
