@@ -73,7 +73,7 @@ def prepare_data_and_model(cfg: DictConfig):
 
 
 if __name__ == "__main__":
-    os.system("dvc remote add --default myremote \
-                           gdrive://1XFxIlCiJriQTO2Xp2C-3jSAlDCNN5dFY")
     os.system("dvc pull --remote myremote")
     prepare_data_and_model()
+    os.system("dvc add model.joblib")
+    os.system("dvc push model.joblib.dvc")

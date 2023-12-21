@@ -1,3 +1,5 @@
+import os
+
 import joblib
 import mlflow
 import numpy as np
@@ -32,7 +34,7 @@ def get_scores(test_target="target.csv"):
 
     metrics = {"mae": mae, "mse": mse, "rmse": rmse, "r2": r2}
 
-    with mlflow.start_run(run_name="House prices") as run:
+    with mlflow.start_run(run_name="House prices"):
         mlflow.log_params(params)
         mlflow.log_metrics(metrics)
 
@@ -40,6 +42,9 @@ def get_scores(test_target="target.csv"):
 
 
 if __name__ == "__main__":
+    os.system("dvc pull --remote myremote")
     client = MlflowClient(tracking_uri="http://127.0.0.1:8080")
     client.create_experiment(name="House prices")
     get_scores()
+    os.system("dvc add predictions.csv")
+    os.system("dvc push predictions.csv.dvc")
