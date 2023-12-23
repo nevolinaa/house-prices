@@ -31,7 +31,10 @@ def get_scores(test_target="target.csv"):
     rmse = np.sqrt(mse)
     r2 = r2_score(y_test, y_pred)
 
-    for metric, name in zip([mse, mae, rmse, r2], "mse", "mae", "rmse", "r2"):
+    metrics_names = ["mse", "mae", "rmse", "r2"]
+    meitrics = [mse, mae, rmse, r2]
+
+    for metric, name in zip(meitrics, metrics_names):
         sw.add_scalar(name, metric, global_step=0)
 
     return {"MSE": mse, "MAE": mae, "RMSE": rmse, "R2": r2}
