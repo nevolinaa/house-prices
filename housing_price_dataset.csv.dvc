@@ -1,0 +1,5 @@
+outs:
+- md5: b8a6965dc68aa71d3d262891ac94eb9e
+  size: 1944010
+  hash: md5
+  path: housing_price_dataset.csv
