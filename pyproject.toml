@@ -16,6 +16,7 @@ dvc = "^3.34.0"
 omegaconf = "^2.3.0"
 mlflow = "^2.9.2"
 dvc-gdrive = "^3.0.0"
+torch = "^2.1.2"
 
 
 [build-system]

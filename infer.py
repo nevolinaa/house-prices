@@ -1,11 +1,10 @@
 import os
 
 import joblib
-import mlflow
 import numpy as np
 import pandas as pd
-from mlflow import MlflowClient
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from torch.utils.tensorboard import SummaryWriter
 
 
 def make_prediction(test_dataset="X_test.csv", model_path="model.joblib"):
@@ -32,23 +31,18 @@ def get_scores(test_target="target.csv"):
     rmse = np.sqrt(mse)
     r2 = r2_score(y_test, y_pred)
 
-    metrics = {"mae": mae, "mse": mse, "rmse": rmse, "r2": r2}
+    for metric, name in zip([mse, mae, rmse, r2], "mse", "mae", "rmse", "r2"):
+        sw.add_scalar(name, metric, global_step=0)
 
-    with mlflow.start_run(run_name="House prices"):
-        mlflow.log_params(params)
-        mlflow.log_metrics(metrics)
-
-    return metrics
+    return {"MSE": mse, "MAE": mae, "RMSE": rmse, "R2": r2}
 
 
 if __name__ == "__main__":
-    os.system("pip update mlflow")
+    sw = SummaryWriter("exp_logs")
     os.system("dvc fetch X_test.csv")
     os.system("dvc fetch target.csv")
     os.system("dvc fetch model.joblib")
     os.system("dvc pull --remote myremote")
-    client = MlflowClient(tracking_uri="http://127.0.0.1:8080")
-    client.create_experiment(name="House prices")
     get_scores()
     os.system("dvc add predictions.csv")
     os.system("dvc push predictions.csv.dvc")
