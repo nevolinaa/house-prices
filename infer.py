@@ -42,8 +42,7 @@ def get_scores(test_target="target.csv"):
 
 
 if __name__ == "__main__":
-    os.system("pip install --upgrade mlflow")
-    os.system("pip install psycopg2-binary")
+    os.system("pip update mlflow")
     os.system("dvc fetch X_test.csv")
     os.system("dvc fetch target.csv")
     os.system("dvc fetch model.joblib")
