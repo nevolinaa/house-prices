@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Predicting the price of a house based on its characteristics"
 authors = ["nevolinaa <https://github.com/nevolinaa>"]
 readme = "README.md"
-repository = "https://github.com/nevolinaa/cats_and_dogs"
+repository = "https://github.com/nevolinaa/house-prices"
 keywords = ["python", "linear_regression", "house_prices"]
 
 [tool.poetry.dependencies]
