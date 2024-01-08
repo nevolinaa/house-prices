@@ -7,7 +7,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from torch.utils.tensorboard import SummaryWriter
 
 
-def make_prediction(test_dataset="X_test.csv", model_path="model.joblib"):
+def make_prediction(test_dataset="data/X_test.csv", model_path="model.joblib"):
     X_test = pd.read_csv(test_dataset)
     X_test = X_test.to_numpy()
 
@@ -19,7 +19,7 @@ def make_prediction(test_dataset="X_test.csv", model_path="model.joblib"):
     return prediction, params
 
 
-def get_scores(summary_writer, test_target="target.csv"):
+def get_scores(summary_writer, test_target="data/target.csv"):
     y_test = pd.read_csv(test_target)
     y_pred, params = make_prediction()
 
