@@ -19,7 +19,7 @@ def make_prediction(test_dataset="X_test.csv", model_path="model.joblib"):
     return prediction, params
 
 
-def get_scores(test_target="target.csv"):
+def get_scores(summary_writer, test_target="target.csv"):
     y_test = pd.read_csv(test_target)
     y_pred, params = make_prediction()
 
@@ -29,23 +29,23 @@ def get_scores(test_target="target.csv"):
     mse = mean_squared_error(y_test, y_pred)
     mae = mean_absolute_error(y_test, y_pred)
     rmse = np.sqrt(mse)
-    r2 = r2_score(y_test, y_pred)
+    r2_score = r2_score(y_test, y_pred)
 
-    metrics_names = ["mse", "mae", "rmse", "r2"]
-    meitrics = [mse, mae, rmse, r2]
+    metrics_names = ["mse", "mae", "rmse", "r2_score"]
+    meitrics = [mse, mae, rmse, r2_score]
 
     for metric, name in zip(meitrics, metrics_names):
-        sw.add_scalar(name, metric, global_step=0)
+        summary_writer.add_scalar(name, metric, global_step=0)
 
-    return {"MSE": mse, "MAE": mae, "RMSE": rmse, "R2": r2}
+    return {"MSE": mse, "MAE": mae, "RMSE": rmse, "R2_score": r2_score}
 
 
 if __name__ == "__main__":
-    sw = SummaryWriter("exp_logs")
+    summary_writer = SummaryWriter("exp_logs")
     os.system("dvc fetch X_test.csv")
     os.system("dvc fetch target.csv")
     os.system("dvc fetch model.joblib")
     os.system("dvc pull --remote myremote")
-    get_scores()
+    get_scores(summary_writer)
     os.system("dvc add predictions.csv")
     os.system("dvc push predictions.csv.dvc")
