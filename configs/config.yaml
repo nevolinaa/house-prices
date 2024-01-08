@@ -1,5 +1,5 @@
 data:
-  path: "housing_price_dataset.csv"
+  path: "data/housing_price_dataset.csv"
 model:
   test_size: 0.3
   random_state: 42
@@ -7,5 +7,5 @@ model:
   target_column: 'Price'
   save_path: 'model.joblib'
 save_names:
-  y: 'target.csv'
-  x: 'X_test.csv'
+  y: 'data/target.csv'
+  x: 'data/X_test.csv'
