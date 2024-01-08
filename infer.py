@@ -29,15 +29,15 @@ def get_scores(summary_writer, test_target="target.csv"):
     mse = mean_squared_error(y_test, y_pred)
     mae = mean_absolute_error(y_test, y_pred)
     rmse = np.sqrt(mse)
-    r2_score = r2_score(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
 
     metrics_names = ["mse", "mae", "rmse", "r2_score"]
-    meitrics = [mse, mae, rmse, r2_score]
+    meitrics = [mse, mae, rmse, r2]
 
     for metric, name in zip(meitrics, metrics_names):
         summary_writer.add_scalar(name, metric, global_step=0)
 
-    return {"MSE": mse, "MAE": mae, "RMSE": rmse, "R2_score": r2_score}
+    return {"MSE": mse, "MAE": mae, "RMSE": rmse, "R2_score": r2}
 
 
 if __name__ == "__main__":
