@@ -20,17 +20,17 @@ def prepare_data(
 ):
     df[encode_columns] = encoder.fit_transform(df[encode_columns])
 
-    X = df.drop(columns=[y_column], axis=1)
-    y = df[y_column]
+    features = df.drop(columns=[y_column], axis=1)
+    target = df[y_column]
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=test_size, random_state=random_state
+        features, target, test_size=test_size, random_state=random_state
     )
 
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-    return X, y, X_train, X_test, y_train, y_test
+    return features, target, X_train, X_test, y_train, y_test
 
 
 def train_model(model, X_train, y_train):
