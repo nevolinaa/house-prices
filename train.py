@@ -74,6 +74,7 @@ def prepare_data_and_model(cfg: DictConfig):
 
 if __name__ == "__main__":
     os.system("dvc fetch data/housing_price_dataset.csv")
+    os.system("dvc pull")
     prepare_data_and_model()
     os.system("dvc add model.joblib")
     os.system("dvc push model.joblib.dvc")
