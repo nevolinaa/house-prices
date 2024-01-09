@@ -63,9 +63,9 @@ def prepare_data_and_model(cfg: DictConfig):
     )
 
     X_test_df = pd.DataFrame(X_test)
-    X_test_df.to_csv(cfg.save_names.x, index=False)
+    X_test_df.to_csv(cfg.save_names.features, index=False)
     y_df = pd.DataFrame(y_test)
-    y_df.to_csv(cfg.save_names.y, index=False)
+    y_df.to_csv(cfg.save_names.target, index=False)
 
     model = LinearRegression()
     model = train_model(model, X_train, y_train)
