@@ -8,4 +8,4 @@ model:
   save_path: 'model.joblib'
 save_names:
   y: 'data/target.csv'
-  x: 'data/test_data.csv'
+  x: 'data/test.csv'
