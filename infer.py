@@ -45,6 +45,7 @@ if __name__ == "__main__":
     os.system("dvc fetch data/X_test.csv")
     os.system("dvc fetch data/target.csv")
     os.system("dvc fetch data/model.joblib")
+    os.system("dvc pull")
     get_scores(summary_writer)
     os.system("dvc add predictions.csv")
     os.system("dvc push predictions.csv.dvc")
