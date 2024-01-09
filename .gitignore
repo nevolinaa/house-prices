@@ -162,4 +162,3 @@ cython_debug/
 !/target.csv
 !/housing_price_dataset.csv
 !/model.joblib
-!/predictions.csv
