@@ -7,5 +7,5 @@ model:
   target_column: 'Price'
   save_path: 'model.joblib'
 save_names:
-  y: 'data/target.csv'
-  x: 'data/test.csv'
+  target: 'data/target.csv'
+  features: 'data/test.csv'
