@@ -42,7 +42,7 @@ def get_scores(summary_writer, test_target="data/target.csv"):
 
 if __name__ == "__main__":
     summary_writer = SummaryWriter("exp_logs")
-    os.system("dvc fetch data/X_test.csv")
+    os.system("dvc fetch data/test.csv")
     os.system("dvc fetch data/target.csv")
     os.system("dvc fetch data/model.joblib")
     os.system("dvc pull")
